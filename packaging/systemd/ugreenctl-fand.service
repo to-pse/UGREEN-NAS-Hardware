@@ -1,0 +1,16 @@
+[Unit]
+Description=UGREEN NAS Fan Control (BearHero)
+After=local-fs.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/bin/ugreenctl-fand --config /etc/ugreenctl/fan-curve.conf --state /run/ugreenctl/fan-curve.state --ugreenctl /usr/local/bin/ugreenctl --plugin-dir /usr/local/lib/ugreenctl/models
+Restart=on-failure
+RestartSec=3
+RuntimeDirectory=ugreenctl
+RuntimeDirectoryMode=0755
+TimeoutStopSec=10
+
+[Install]
+WantedBy=multi-user.target
